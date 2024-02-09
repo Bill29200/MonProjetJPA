@@ -9,7 +9,12 @@ import java.time.LocalDateTime;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 //................................................................................................
 @Entity(name = "Mission")
-@Table(name = "mission")
+@Table(
+        name = "mission",
+        uniqueConstraints = {
+        @UniqueConstraint(name = "mission_name_unique", columnNames = "name")
+                           }
+       )
 //................................................................................................
 public class Mission {
 
@@ -38,7 +43,8 @@ public class Mission {
 
     @Column(
             name = "mission_name",
-            nullable = false
+            nullable = false,
+            columnDefinition = "TEXT"
     )
     private String missionName;
     //................................................................................................
